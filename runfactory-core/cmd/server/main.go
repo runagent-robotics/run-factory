@@ -356,10 +356,10 @@ func decodeJSONBody(r *http.Request, target any) error {
 	decoder := json.NewDecoder(r.Body)
 	decoder.DisallowUnknownFields()
 	if err := decoder.Decode(target); err != nil {
-		return fmt.Errorf("invalid JSON body")
+		return fmt.Errorf("invalid JSON body: %w", err)
 	}
 	if decoder.More() {
-		return fmt.Errorf("invalid JSON body")
+		return fmt.Errorf("request body must contain exactly one JSON object")
 	}
 	return nil
 }
