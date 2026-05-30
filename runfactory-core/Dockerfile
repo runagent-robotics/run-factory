@@ -2,7 +2,7 @@ FROM golang:1.22-alpine AS build
 
 WORKDIR /src
 
-COPY go.mod ./
+COPY go.* ./
 COPY cmd ./cmd
 
 RUN go build -o /out/runfactory-core ./cmd/server
