@@ -128,18 +128,27 @@ Run Factory is built on a layered architecture:
 
 ---
 
-## 🧪 Getting Started (Conceptual)
+## 🧪 Getting Started
 
 ```bash
 # Clone repository
 git clone https://github.com/your-org/run-factory.git
 
-# Start core services
-docker-compose up
+cd run-factory
 
-# Launch dashboard
-cd dashboard && npm run dev
+# Start backend, dashboard, and local support services
+docker compose up --build
 ```
+
+This brings up:
+
+* backend API at `http://localhost:8080/health`
+* dashboard at `http://localhost:4173`
+* PostgreSQL at `localhost:5432`
+* Mosquitto MQTT/WebSocket broker at `localhost:1883` and `localhost:9001`
+* NATS with JetStream at `localhost:4222`
+
+> The bundled Mosquitto config enables anonymous local access for development only and should not be reused in production.
 
 ---
 
