@@ -20,9 +20,14 @@ func DecodeJSONBody(r *http.Request, target any) error {
 }
 
 func WriteJSON(w http.ResponseWriter, status int, value any) {
+	payload, err := json.Marshal(value)
+	if err != nil {
+		http.Error(w, "internal server error", http.StatusInternalServerError)
+		return
+	}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
-	_ = json.NewEncoder(w).Encode(value)
+	_, _ = w.Write(append(payload, '\n'))
 }
 
 func WriteError(w http.ResponseWriter, status int, message string) {
