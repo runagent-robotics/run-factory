@@ -143,7 +143,7 @@ make up
 For common local workflows:
 
 ```bash
-make test  # backend test/build + dashboard build
+make test  # backend tests + backend build + dashboard build
 make lint  # backend vet + dashboard lint
 make down  # stop and remove local stack
 ```
