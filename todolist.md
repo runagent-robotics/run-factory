@@ -35,11 +35,5 @@
 - [ ] Bổ sung rate limit + input validation nâng cao
 - [ ] Viết runbook vận hành, backup/restore, và monitoring alerts
 
-## 6) Product Roadmap Milestones
-- [ ] MVP orchestration engine
-- [ ] Basic robot communication (MQTT)
-- [ ] Real-time dashboard
-- [ ] Multi-zone coordination
-- [ ] Digital twin simulation
-- [ ] AI-based task optimization
-- [ ] Large-scale deployment support (100k+ robots)
+## 6) Product Roadmap Tracking
+- [ ] Theo dõi tiến độ roadmap bằng cách cập nhật trạng thái các mục ở phần 4 (Digital Twin & Orchestration) và phần 3 (Dashboard)
