@@ -16,7 +16,7 @@
 - [x] T10 - Add `Makefile` targets (`make up`, `make down`, `make test`, `make lint`) to standardize local workflow.
 
 ## B) Data model and persistence (12 tasks)
-- [ ] T11 - Define PostgreSQL schema for `factories` table (id, name, map3d, created_at, updated_at).
+- [x] T11 - Define PostgreSQL schema for `factories` table (id, name, map3d, created_at, updated_at).
 - [ ] T12 - Define PostgreSQL schema for `robots` table (id, factory_id, name, position_x/y/z, status, updated_at).
 - [ ] T13 - Define PostgreSQL schema for `zones` table (id, factory_id, name, polygon/bounds, metadata).
 - [ ] T14 - Define PostgreSQL schema for `tasks` table (id, factory_id, robot_id, zone_id, type, payload, status, timestamps).
