@@ -137,7 +137,15 @@ git clone https://github.com/your-org/run-factory.git
 cd run-factory
 
 # Start backend, dashboard, and local support services
-docker compose up --build
+make up
+```
+
+For common local workflows:
+
+```bash
+make test  # backend test/build + dashboard production build
+make lint  # dashboard lint
+make down  # stop and remove local stack
 ```
 
 This brings up:
