@@ -12,7 +12,7 @@
 - [x] T06 - Keep backend modular boundaries (`domain/repository/service/transport` + `platform`) intact.
 - [x] T07 - Keep backend validation commands green: `go test ./... && go build ./...`.
 - [x] T08 - Keep dashboard validation commands green: `npm run lint && npm run build`.
-- [ ] T09 - Add root `.env.example` with explicit keys: `API_PORT`, `DATABASE_URL`, `MQTT_BROKER_URL`, `NATS_URL`, and dashboard API base URL.
+- [x] T09 - Add root `.env.example` with explicit keys: `API_PORT`, `DATABASE_URL`, `MQTT_BROKER_URL`, `NATS_URL`, and dashboard API base URL.
 - [ ] T10 - Add `Makefile` targets (`make up`, `make down`, `make test`, `make lint`) to standardize local workflow.
 
 ## B) Data model and persistence (12 tasks)
