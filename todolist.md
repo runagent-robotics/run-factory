@@ -12,7 +12,7 @@
 - [x] T06 - Keep backend modular boundaries (`domain/repository/service/transport` + `platform`) intact.
 - [x] T07 - Keep backend validation commands green: `go test ./... && go build ./...`.
 - [x] T08 - Keep dashboard validation commands green: `npm run lint && npm run build`.
-- [ ] T09 - Add root `.env.example` with explicit keys: `APP_PORT`, `DATABASE_URL` (or DB host/port/user/pass/name), `MQTT_BROKER_URL`, `NATS_URL`, and dashboard API base URL.
+- [ ] T09 - Add root `.env.example` with explicit keys: `APP_PORT`, `DATABASE_URL`, `MQTT_BROKER_URL`, `NATS_URL`, and dashboard API base URL.
 - [ ] T10 - Add `Makefile` targets (`make up`, `make down`, `make test`, `make lint`) to standardize local workflow.
 
 ## B) Data model and persistence (12 tasks)
@@ -48,7 +48,7 @@
 - [ ] T36 - Add backend consumer to update robot state from incoming telemetry events.
 - [ ] T37 - Add simple scheduler worker: assign queued tasks to available robots in same zone.
 - [ ] T38 - Add retry and dead-letter handling for failed task executions.
-- [ ] T39 - Add idempotency handling for task creation using `Idempotency-Key` header with key persistence + TTL (for example 24h) to reject duplicate creates.
+- [ ] T39 - Add idempotency handling for task creation using `Idempotency-Key` header with key persistence + TTL (e.g., 24h) to reject duplicate creates.
 - [ ] T40 - Add orchestration metrics (queue size, assignment latency, task success rate).
 
 ## E) Dashboard delivery plan (6 tasks)
