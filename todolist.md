@@ -11,7 +11,7 @@
 - [ ] Add task management APIs (create/assign/update status)
 - [ ] Add zone-based coordination APIs
 - [ ] Integrate event bus (MQTT/NATS) for real-time robot state updates
-- [ ] Add API authn/authz (token/API key/RBAC)
+- [ ] Add API authentication and authorization (token/API key/RBAC)
 - [ ] Improve observability (structured logging, metrics, tracing)
 
 ## 3) Dashboard (runfactory-dashboard)
@@ -30,7 +30,7 @@
 
 ## 5) Quality, Security, Operations
 - [ ] Expand unit/integration tests for service, transport, and repository layers
-- [ ] Set up E2E tests for backend ↔ dashboard flows
+- [ ] Set up E2E tests for backend/dashboard integration flows
 - [ ] Harden broker/API security (no anonymous access in production)
 - [ ] Add rate limiting and stronger input validation
 - [ ] Write operation runbooks, backup/restore plans, and monitoring alerts
