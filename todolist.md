@@ -5,14 +5,14 @@
 
 ## A) Baseline and project setup (10 tasks)
 - [x] T01 - Keep root `docker-compose.yml` running backend, dashboard, PostgreSQL, Mosquitto, and NATS.
-- [x] T02 - Keep `README.MD` "Getting Started" aligned with `docker compose up --build`.
+- [x] T02 - Keep root README "Getting Started" aligned with `docker compose up --build`.
 - [x] T03 - Keep backend health endpoint `GET /health` returning `200 ok`.
 - [x] T04 - Keep backend factory routes registered (`POST/GET /factories`, `GET /factories/{id}`, `PUT /factories/{id}/map`, robot add/remove).
 - [x] T05 - Keep in-memory factory repository implementation for MVP baseline.
 - [x] T06 - Keep backend modular boundaries (`domain/repository/service/transport` + `platform`) intact.
 - [x] T07 - Keep backend validation commands green: `go test ./... && go build ./...`.
 - [x] T08 - Keep dashboard validation commands green: `npm run lint && npm run build`.
-- [ ] T09 - Add root `.env.example` documenting all required variables for backend, dashboard, DB, MQTT, NATS.
+- [ ] T09 - Add root `.env.example` with explicit keys: `APP_PORT`, `DATABASE_URL` (or DB host/port/user/pass/name), `MQTT_BROKER_URL`, `NATS_URL`, and dashboard API base URL.
 - [ ] T10 - Add `Makefile` targets (`make up`, `make down`, `make test`, `make lint`) to standardize local workflow.
 
 ## B) Data model and persistence (12 tasks)
@@ -27,7 +27,7 @@
 - [ ] T19 - Add repository-level optimistic locking/version field for concurrent updates.
 - [ ] T20 - Add indexes for hot queries (`factory_id`, `robot_id`, `status`, `updated_at`).
 - [ ] T21 - Add data access tests for PostgreSQL repositories (success + conflict + not-found cases).
-- [ ] T22 - Add switch/config to choose storage backend (`memory` vs `postgres`) by environment variable.
+- [ ] T22 - Add `STORAGE_BACKEND` config (`memory|postgres`) with fail-fast startup validation for unknown values or unavailable DB connection.
 
 ## C) Backend API expansion (10 tasks)
 - [ ] T23 - Add endpoint `GET /factories/{factoryID}/robots` with pagination parameters.
@@ -48,7 +48,7 @@
 - [ ] T36 - Add backend consumer to update robot state from incoming telemetry events.
 - [ ] T37 - Add simple scheduler worker: assign queued tasks to available robots in same zone.
 - [ ] T38 - Add retry and dead-letter handling for failed task executions.
-- [ ] T39 - Add idempotency key handling for task creation API.
+- [ ] T39 - Add idempotency handling for task creation using `Idempotency-Key` header with key persistence + TTL (for example 24h) to reject duplicate creates.
 - [ ] T40 - Add orchestration metrics (queue size, assignment latency, task success rate).
 
 ## E) Dashboard delivery plan (6 tasks)
