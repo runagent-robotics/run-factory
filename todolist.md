@@ -1,36 +1,66 @@
-# Project TODO Checklist
+# Run Factory - 1 Month Execution Checklist (~50 tasks)
 
-## 1) Foundation & Setup
-- [ ] Finalize local setup guide for backend + dashboard + support services via Docker Compose
-- [ ] Standardize environment variables (`.env.example`) across all services
-- [ ] Set up baseline CI workflows for backend and dashboard
+> Goal: break down delivery into small, executable issues/tasks.  
+> Rule: completed items already in the repository are marked `[x]`.
 
-## 2) Backend (runfactory-core)
-- [ ] Replace in-memory repository with PostgreSQL persistence
-- [ ] Design migration schema for factory, robot, zone, and task
-- [ ] Add task management APIs (create/assign/update status)
-- [ ] Add zone-based coordination APIs
-- [ ] Integrate event bus (MQTT/NATS) for real-time robot state updates
-- [ ] Add API authentication and authorization (token/API key/RBAC)
-- [ ] Improve observability (structured logging, metrics, tracing)
+## A) Baseline and project setup (10 tasks)
+- [x] T01 - Keep root `docker-compose.yml` running backend, dashboard, PostgreSQL, Mosquitto, and NATS.
+- [x] T02 - Keep `README.MD` "Getting Started" aligned with `docker compose up --build`.
+- [x] T03 - Keep backend health endpoint `GET /health` returning `200 ok`.
+- [x] T04 - Keep backend factory routes registered (`POST/GET /factories`, `GET /factories/{id}`, `PUT /factories/{id}/map`, robot add/remove).
+- [x] T05 - Keep in-memory factory repository implementation for MVP baseline.
+- [x] T06 - Keep backend modular boundaries (`domain/repository/service/transport` + `platform`) intact.
+- [x] T07 - Keep backend validation commands green: `go test ./... && go build ./...`.
+- [x] T08 - Keep dashboard validation commands green: `npm run lint && npm run build`.
+- [ ] T09 - Add root `.env.example` documenting all required variables for backend, dashboard, DB, MQTT, NATS.
+- [ ] T10 - Add `Makefile` targets (`make up`, `make down`, `make test`, `make lint`) to standardize local workflow.
 
-## 3) Dashboard (runfactory-dashboard)
-- [ ] Replace Vite starter UI with real factory administration screens
-- [ ] Connect dashboard to backend APIs (`/factories`, `/robots`, `/health`)
-- [ ] Build factory and robot list/detail pages
-- [ ] Add real-time robot state view (WebSocket/MQTT bridge)
-- [ ] Standardize design system and state management
+## B) Data model and persistence (12 tasks)
+- [ ] T11 - Define PostgreSQL schema for `factories` table (id, name, map3d, created_at, updated_at).
+- [ ] T12 - Define PostgreSQL schema for `robots` table (id, factory_id, name, position_x/y/z, status, updated_at).
+- [ ] T13 - Define PostgreSQL schema for `zones` table (id, factory_id, name, polygon/bounds, metadata).
+- [ ] T14 - Define PostgreSQL schema for `tasks` table (id, factory_id, robot_id, zone_id, type, payload, status, timestamps).
+- [ ] T15 - Add DB migration runner and initial migration files.
+- [ ] T16 - Implement PostgreSQL repository for factories (`create/list/get/update map`).
+- [ ] T17 - Implement PostgreSQL repository for robot add/remove/list operations.
+- [ ] T18 - Add repository transaction helper for multi-step updates.
+- [ ] T19 - Add repository-level optimistic locking/version field for concurrent updates.
+- [ ] T20 - Add indexes for hot queries (`factory_id`, `robot_id`, `status`, `updated_at`).
+- [ ] T21 - Add data access tests for PostgreSQL repositories (success + conflict + not-found cases).
+- [ ] T22 - Add switch/config to choose storage backend (`memory` vs `postgres`) by environment variable.
 
-## 4) Digital Twin & Orchestration
-- [ ] Build MVP orchestration engine
-- [ ] Complete basic robot communication (MQTT)
-- [ ] Implement multi-zone coordination
-- [ ] Build real-time digital twin simulation
-- [ ] Research and integrate AI-based task optimization
+## C) Backend API expansion (10 tasks)
+- [ ] T23 - Add endpoint `GET /factories/{factoryID}/robots` with pagination parameters.
+- [ ] T24 - Add endpoint `PATCH /factories/{factoryID}/robots/{robotID}/position`.
+- [ ] T25 - Add endpoint `PATCH /factories/{factoryID}/robots/{robotID}/status`.
+- [ ] T26 - Add endpoint `POST /factories/{factoryID}/zones`.
+- [ ] T27 - Add endpoint `GET /factories/{factoryID}/zones`.
+- [ ] T28 - Add endpoint `PATCH /factories/{factoryID}/zones/{zoneID}`.
+- [ ] T29 - Add endpoint `POST /factories/{factoryID}/tasks` (task creation).
+- [ ] T30 - Add endpoint `POST /factories/{factoryID}/tasks/{taskID}/assign` (assign robot).
+- [ ] T31 - Add endpoint `PATCH /factories/{factoryID}/tasks/{taskID}/status` (queued/running/done/failed).
+- [ ] T32 - Add endpoint `GET /factories/{factoryID}/tasks` with filtering by status/robot/zone.
 
-## 5) Quality, Security, Operations
-- [ ] Expand unit/integration tests for service, transport, and repository layers
-- [ ] Set up E2E tests for backend/dashboard integration flows
-- [ ] Harden broker/API security (no anonymous access in production)
-- [ ] Add rate limiting and stronger input validation
-- [ ] Write operation runbooks, backup/restore plans, and monitoring alerts
+## D) Eventing and orchestration MVP (8 tasks)
+- [ ] T33 - Define event schema for robot telemetry, task lifecycle, and zone events.
+- [ ] T34 - Implement publisher for robot/task events to NATS subject namespace.
+- [ ] T35 - Implement MQTT bridge topic structure for robot state updates.
+- [ ] T36 - Add backend consumer to update robot state from incoming telemetry events.
+- [ ] T37 - Add simple scheduler worker: assign queued tasks to available robots in same zone.
+- [ ] T38 - Add retry and dead-letter handling for failed task executions.
+- [ ] T39 - Add idempotency key handling for task creation API.
+- [ ] T40 - Add orchestration metrics (queue size, assignment latency, task success rate).
+
+## E) Dashboard delivery plan (6 tasks)
+- [x] T41 - Keep React/Vite dashboard scaffold running as frontend baseline.
+- [ ] T42 - Replace template home page with factory operations landing page.
+- [ ] T43 - Implement API client module for backend endpoints (`health/factories/robots/tasks`).
+- [ ] T44 - Implement factory list + create form UI.
+- [ ] T45 - Implement factory detail page (map, robot list, task list).
+- [ ] T46 - Implement robot detail panel with live position/status updates.
+
+## F) Quality, security, CI/CD, operations (4 tasks)
+- [ ] T47 - Add GitHub Actions workflow for backend test/build on pull requests.
+- [ ] T48 - Add GitHub Actions workflow for dashboard lint/build on pull requests.
+- [ ] T49 - Add API authentication middleware (token-based) for write endpoints.
+- [ ] T50 - Add production hardening checklist for Mosquitto/NATS/PostgreSQL credentials and network policies.
