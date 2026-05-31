@@ -34,6 +34,3 @@
 - [ ] Hardening bảo mật cho broker/API (không dùng anonymous access ở production)
 - [ ] Bổ sung rate limit + input validation nâng cao
 - [ ] Viết runbook vận hành, backup/restore, và monitoring alerts
-
-## 6) Product Roadmap Tracking
-- [ ] Theo dõi tiến độ roadmap bằng cách cập nhật trạng thái các mục ở phần 4 (Digital Twin & Orchestration) và phần 3 (Dashboard)
