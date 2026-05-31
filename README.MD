@@ -144,7 +144,7 @@ For common local workflows:
 
 ```bash
 make test  # backend test/build + dashboard production build
-make lint  # dashboard lint
+make lint  # backend vet + dashboard lint
 make down  # stop and remove local stack
 ```
 

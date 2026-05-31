@@ -11,4 +11,5 @@ test:
 	cd runfactory-dashboard && npm run build
 
 lint:
+	cd runfactory-core && go vet ./...
 	cd runfactory-dashboard && npm run lint
